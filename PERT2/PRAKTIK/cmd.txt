@@ -1,0 +1,25 @@
+mysql -u root -p
+create database pwd2;
+show databases;
+use pwd2;
+CREATE TABLE Transaksi (
+    -> id int NOT NULL AUTO_INCREMENT,
+    -> username varchar(255) NOT NULL,
+    -> password varchar(255) NOT NULL,
+    -> Tanggal_lahir date,
+    -> Jumlah_transaksi int(11),
+    -> Total_transaksi int(20),
+    -> PRIMARY KEY(id));
+
+INSERT INTO Transaksi VALUES
+    -> (1,'Aris','zxcvbnm','1987-09-09',6,10000),
+    -> (2,'Budi','asdfghj','1994-01-01',0,0),
+    -> (3,'Charlie','lkqwert','1965-12-06',24,312150),
+    -> (4,'Daniel','poiuytr','1980-04-24',3,0);
+select * from Transaksi;
+select * from Transaksi
+    -> where Total_transaksi = 0;
+select username from Transaksi
+    -> where Jumlah_transaksi <10 and Total_transaksi>10000;
+select sum(Total_transaksi) as Total from Transaksi;
+select * from Transaksi order by Jumlah_transaksi desc;
