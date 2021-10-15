@@ -1,0 +1,19 @@
+mysql -u root -p
+create database pwd2;
+show databases;
+use pwd2;
+ALTER TABLE Transaksi ADD Alamat varchar (255);
+SELECT * FROM Transaksi;
+UPDATE Transaksi SET
+    -> Alamat = "Jl. Ahmad Yani" WHERE id=1;
+UPDATE Transaksi SET
+    -> Alamat = "Jl. Depati Amir" WHERE id=2;
+UPDATE Transaksi SET
+    -> Alamat = "Jl. Yos Sudarso" WHERE id=3;
+UPDATE Transaksi SET
+    -> Alamat = "Jl. Soekarno" WHERE id=4;
+SELECT username FROM Transaksi WHERE Jumlah_transaksi<10;
+SELECT username, password FROM Transaksi;
+SELECT * FROM Transaksi WHERE Jumlah_Transaksi=0 OR Total_transaksi=0;
+SELECT * FROM Transaksi ORDER BY Tanggal_lahir ASC;
+SELECT * FROM Transaksi ORDER BY Alamat LIMIT 3;
