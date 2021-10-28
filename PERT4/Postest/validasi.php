@@ -1,5 +1,6 @@
 <html>
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <style>
 .error {color: #FF0000;}
 </style>
@@ -42,15 +43,18 @@ $emailErr = "Email tidak sesuai format";
 }
 }
 
-if (empty($_POST["notelp"])) {
-$notelpErr = "No HP harus diisi";
-}else if(!is_numeric($_POST['notelp'])) {
-$notelpErr = 'No HP harus angka';
-}else if(strlen($_POST['notelp']) != 12) {
-$notelpErr = 'No HP harus berjumlah 12 angka';
-}else{
-$notelp = test_input($_POST["notelp"]);
-}
+if (empty($_POST["notelp"])) 
+  {
+    $notelpErr = "No HP tidak boleh kosong";
+  } 
+  else 
+  {
+    $notelp = test_input($_POST["notelp"]);
+    if(!is_numeric($notelp)) 
+    {
+      $notelpErr = 'No HP hanya boleh angka';
+    }
+  }
 
 if (empty($_POST["alamat"])) {
 $alamatErr = "Alamat harus diisi";
@@ -67,57 +71,69 @@ return $data;
 }
 ?>
 
-<h2>Input Data Mahasiswa </h2> 
+<div class="row">
+<div class="col-md-6">
+<div class="card">
+  <div class="card-header">
+    Input Data Mahasiswa
+  </div>
 
 <p><span class = "error">* Harus Diisi.</span></p>
 
+<div class="card-body">
 <form method = "post" action = "<?php 
 echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-<table>
+<div class="form-group row">
+    <label for="nim" class="col-sm-2 col-form-label">NIM</label>
+    <div class="col-sm-10">
+      <input type="text" name="nim" class="form-control <?php echo ($nimErr !="" ? "is-invalid" : ""); ?>" 
+      id="nim" placeholder="NIM" value="<?php echo $nim; ?>"><span class="warning"><?php echo $nimErr; ?></span>
+    </div>
+</div>
 
-<tr>
-<td>Nim:</td>
-<td><input type = "text" name = "nim">
-<span class = "error">* <?php echo $nimErr;?></span>
-</td>
-</tr>
+<div class="form-group row">
+    <label for="nama" class="col-sm-2 col-form-label">Nama</label>
+    <div class="col-sm-10">
+      <input type="text" name="nama" class="form-control <?php echo ($namaErr !="" ? "is-invalid" : ""); ?>" 
+      id="nama" placeholder="Nama" value="<?php echo $nama; ?>"><span class="warning"><?php echo $namaErr; ?></span>
+    </div>
+</div>
 
-<tr>
-<td>Nama:</td>
-<td><input type = "text" name = "nama">
-<span class = "error">* <?php echo $namaErr;?></span>
-</td>
-</tr>
+<div class="form-group row">
+    <label for="nama" class="col-sm-2 col-form-label">Gender</label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" id="gender" value="L">
+        <label class="form-check-label" for="gender">Laki-laki</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" id="gender" value="P">
+        <label class="form-check-label" for="gender">Perempuan</label>
+    </div>
+</div>
 
-<tr>
-<td>Gender:</td>
-<td>
-<input type = "radio" name = "gender" value = "L">Laki-Laki
-<input type = "radio" name = "gender" value = "P">Perempuan
-<span class = "error">* <?php echo $genderErr;?></span>
-</td>
-</tr>
+<div class="form-group row">
+    <label for="email" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input type="text" name="email" class="form-control <?php echo ($emailErr !="" ? "is-invalid" : ""); ?>" 
+      id="email" placeholder="Email" value="<?php echo $email; ?>"><span class="warning"><?php echo $emailErr; ?></span>
+    </div>
+</div>
 
-<tr>
-<td>E-mail: </td>
-<td><input type = "text" name = "email">
-<span class = "error">* <?php echo $emailErr;?></span>
-</td>
-</tr>
+<div class="form-group row">
+    <label for="notelp" class="col-sm-2 col-form-label">No HP</label>
+    <div class="col-sm-10">
+      <input type="text" name="notelp" class="form-control <?php echo ($notelpErr !="" ? "is-invalid" : ""); ?>" 
+      id="notelp" placeholder="Nomor HP" value="<?php echo $notelp; ?>"><span class="warning"><?php echo $notelpErr; ?></span>
+    </div>
+</div>
 
-<tr>
-<td>No HP:</td>
-<td> <input type = "text" name = "notelp">
-<span class = "error">*<?php echo $notelpErr;?></span>
-</td>
-</tr>
-
-<tr>
-<td>Alamat:</td>
-<td> <input type = "text" name = "alamat">
-<span class = "error">*<?php echo $alamatErr;?></span>
-</td>
-</tr>
+<div class="form-group row">
+    <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+    <div class="col-sm-10">
+      <input type="text" name="alamat" class="form-control <?php echo ($alamatErr !="" ? "is-invalid" : ""); ?>" 
+      id="alamat" placeholder="Alamat" value="<?php echo $alamat; ?>"><span class="warning"><?php echo $alamatErr; ?></span>
+    </div>
+</div>
 
 <td>
 <input type = "submit" name = "submit" value = "Submit"> 
