@@ -23,10 +23,10 @@ if(isset($_GET['cari'])){
 <?php 
 if(isset($_GET['cari'])){
     $cari = $_GET['cari'];
-    $sql="select * from KHS where nim = ' ".$cari." '";
+    $sql="select * from khs where nim = '".$cari."'";
     $tampil = mysqli_query($con,$sql);
 }else{
-    $sql="select * from KHS";
+    $sql="select * from khs";
     $tampil = mysqli_query($con,$sql);
 }
 $no = 1;
@@ -34,7 +34,7 @@ while($r = mysqli_fetch_array($tampil)){
 ?>
 <tr>
     <td><?php echo $no++; ?></td>
-    <td><?php echo $r['NIM']; ?></td>
+    <td><?php echo $r['nim']; ?></td>
     <td><?php echo $r['kodeMK']; ?></td>
     <td><?php echo $r['nilai']; ?></td>
 </tr>
